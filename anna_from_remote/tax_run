@@ -1,0 +1,18 @@
+#!/bin/sh                                                                                                       
+
+# let cnt=0
+# let dir_n = split_list
+
+# cd 1
+
+# ls 1 | \
+ls split_list | \
+while read line
+do
+	echo $line
+	# time ./tax_rec_files-no_output.rb text_bad.txt 1/$line | grep -v "\[\[\]\]" >> tax_pairs_recon_whole-test.txt 
+	time ./tax_rec_files-no_output.rb list2.txt split_list/$line >> tax_pairs_recon_whole_test.txt 
+done
+
+# time ./tax_rec_files.rb list2.txt u_master-list-sort.txt > tax_pairs_recon_whole.txt
+
