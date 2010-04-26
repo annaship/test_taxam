@@ -68,17 +68,21 @@ bad = prepare_data('bad2.txt')
 puts 'ok done with collecting data....'
 t = Time.now
 bad.keys.sort.each do |g_bad|
+  puts "=" * 80
   count      = 0
   g_bad_size = g_bad.size
   delta      = (g_bad_size / 4.0).ceil
+  # puts "(g_bad_size - delta..g_bad_size + delta) = %s\n" % [g_bad_size - delta..g_bad_size + delta].inspect
   res        = []
   (g_bad_size - delta..g_bad_size + delta).each do |size|
     res += gen_size[size] 
+    # puts "gen_size[size] = %s, res = %s\n" % [gen_size[size], res.inspect]
   end
   matches = []
   g1 = {:normalized => g_bad, :phonetized => 'a'}
   res.each do |g_good|
     g2 = {:normalized => g_good, :phonetized => 'b'}
+    # puts "g_bad = %s, g_good = %s\n" % [g_bad, g_good]
     match = tm.match_genera(g1, g2)
     count = match_sp(tm, bad, genera, g_bad, g_good, match, count, data_file) if match["match"]
   end
